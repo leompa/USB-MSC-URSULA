@@ -197,7 +197,7 @@ void post_download (String nombrePlaca, String id, File *uploadFile, String urlD
         String msg = "[HTTP] POST... failed, error: " + String(httpCode);
         PRINT_STR_LN (msg,x,y);
       }
-      http.end();
+      http.end();//TODO ver si esta bien cerrada la conexion http
    
     }
     else 
@@ -371,7 +371,7 @@ void downloadFiles (String list_files)
                 { PRINT_STR_LN ("Tiene tamaño se deja",x,y);
                 }
                 else
-                { PRINT_STR_LN ("No tiene tamaño se borra",x,y);
+                { PRINT_STR_LN ("No tiene tamaño se borra",x,y);// el archivo existe pero tiene tamaño cero asi que se borra y se descarga nuevamente
                   SD_MMC.remove (nFile.c_str());
                   delay (5);
                   File downFile = SD_MMC.open(nFile, FILE_WRITE);
@@ -422,7 +422,7 @@ void sendLog (){
                 nfile.print(ctime(&now));
                 nfile.print("\t");
                 nfile.print("Mac: ");
-                nfile.print(WiFi.macAddress());
+                nfile.println(WiFi.macAddress());                
                 delay (10);
                 nfile.close();
                 PRINT_STR_LN("Se agrego linea al log", x, y)

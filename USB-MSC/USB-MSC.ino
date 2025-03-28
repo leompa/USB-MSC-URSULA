@@ -130,9 +130,9 @@ static void usbEventCallback(void *arg, esp_event_base_t event_base, int32_t eve
 }
 
 void setup() {
-  sd_init_usd ();
+  sd_init_usd ();//actualiza la tarjeta contra el servidor
   
-  sd_init();
+  sd_init();//monta la tarjeta en modo emulador usb
   USB.onEvent(usbEventCallback);
   MSC.vendorID("Ursula");       // max 8 chars
   MSC.productID("UrsulaSD"); // max 16 chars
